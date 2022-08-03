@@ -3,8 +3,8 @@ import { Register } from "./pages/Register"
 
 function App() {
   return (
-    <Grid container justifyContent='center' spacing={2} color="primary">
-      <Grid item xs={12} md={8}>
+    <Grid height='100vh' container justifyContent='center' color="primary">
+      <Grid marginTop={4} item xs={12} md={8}>
         <Register />
       </Grid>
     </Grid>

@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
     palette: {
@@ -9,11 +9,26 @@ const theme = createTheme({
             contrastText: '#fff'
         },
         secondary: {
-            light: '#fa5e2f',
-            main: '#df3908',
-            dark: '#ad2d07',
+            light: '#ff825c',
+            main: '#fa5e2f',
+            dark: '#df3908',
             contrastText: '#000'
-        }
+        },
+        mode: 'dark'
+    },
+    typography: {
+        fontFamily: [
+            '-apple-system',
+            'Roboto',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join('')
     }
 })
 
