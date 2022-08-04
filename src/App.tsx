@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material"
-import { Register } from "./pages/Register"
+import { SignIn } from "./pages/SignIn"
 
 function App() {
   return (
-    <Grid height='100vh' container justifyContent='center' color="primary">
+    <Grid height='100vh' container justifyContent='center'>
       <Grid marginTop={4} item xs={12} md={8}>
-        <Register />
+        <SignIn />
       </Grid>
     </Grid>
   )
