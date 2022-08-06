@@ -1,10 +1,11 @@
-import { EmailOutlined } from "@mui/icons-material";
 import { Box, Button, Card, FormControl, Grid, TextField, Typography } from "@mui/material";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
+import { SubmitButton } from "../components/SubmitButton";
+import { TextInput } from "../components/TextInput";
 
 export function RecoverPassword() {
     const [email, setEmail] = useState<string>('')
-    const [isEmailIconFocused, setIsEmailIconFocused] = useState(false)
+    const [isEmailInputFocused, setIsEmailInputFocused] = useState<boolean>(false)
 
     function handleEmailSubmit(event: FormEvent) {
         event.preventDefault()
@@ -17,13 +18,8 @@ export function RecoverPassword() {
                 <Typography fontWeight={500} align="center" variant="h3">Forgot your password?</Typography>
                 <FormControl>
                     <Box component='form' onSubmit={handleEmailSubmit} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
-                        <Box display='flex' justifyContent='space-between' alignItems='end' gap={2}>
-                            <Box display='flex' alignItems='end' onClick={() => setIsEmailIconFocused(!isEmailIconFocused)}>
-                                <EmailOutlined aria-label="Password" sx={{ fontSize: 24 }} />
-                            </Box>
-                            <TextField focused={isEmailIconFocused} fullWidth onChange={e => setEmail(e.target.value)} color='secondary' label='Email' variant='standard' />
-                        </Box>
-                        <Button sx={{ alignSelf: 'center' }} size='large' disableElevation variant="contained" color='secondary' type="submit">Send</Button>
+                        <TextInput inputType='email' color='secondary' setInputValue={setEmail} isInputFocused={isEmailInputFocused} setIsInputFocused={setIsEmailInputFocused} />
+                        <SubmitButton color='secondary' text='Send' />
                     </Box>
                 </FormControl>
                 <Typography textAlign='center' color='GrayText'>A message will be sent to your e-mail to set or reset your new password</Typography>

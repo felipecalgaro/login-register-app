@@ -1,8 +1,10 @@
-import { RemoveRedEyeOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 import { Box, Button, Card, FormControl, Grid, TextField, Typography } from "@mui/material";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import FooterImage from '../assets/register-footer-image.jpg';
 import SideImage from '../assets/register-side-image.jpg';
+import { TextInput } from "../components/TextInput";
+import { PasswordInput } from "../components/PasswordInput";
+import { SubmitButton } from "../components/SubmitButton";
 
 
 export function Register() {
@@ -13,6 +15,8 @@ export function Register() {
     const [screenWidth, setScreenWidth] = useState<number>(screen.width)
 
     const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true)
+    const [isEmailInputFocused, setIsEmailInputFocused] = useState<boolean>(false)
+    const [isNameInputFocused, setIsNameInputFocused] = useState<boolean>(false)
 
     function handleRegister(event: FormEvent) {
         event.preventDefault()
@@ -23,12 +27,6 @@ export function Register() {
         window.addEventListener('resize', () => setScreenWidth(screen.width))
     }, [])
 
-    const onHoverIconSX = {
-        "&:hover": {
-            cursor: "pointer",
-        },
-    };
-
     return (
         <Card sx={{ borderRadius: '10px', maxHeight: '800px' }}>
             <Grid container justifyContent='space-between'>
@@ -37,15 +35,10 @@ export function Register() {
                         <Typography fontWeight={500} align="center" variant="h3">Create your account</Typography>
                         <FormControl>
                             <Box component='form' onSubmit={handleRegister} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
-                                <TextField onChange={e => setName(e.target.value)} color='primary' label='Name' variant='standard' sx={{ ml: 5 }} />
-                                <TextField onChange={e => setEmail(e.target.value)} color='primary' label='Email' variant='standard' sx={{ ml: 5 }} />
-                                <Box display='flex' justifyContent='space-between' alignItems='end' gap={2}>
-                                    <Box display='flex' alignItems='end' onClick={() => setIsPasswordHidden(!isPasswordHidden)} sx={onHoverIconSX}>
-                                        {isPasswordHidden ? <VisibilityOffOutlined aria-label="Password" sx={{ fontSize: 24 }} /> : <RemoveRedEyeOutlined aria-label="Password" sx={{ fontSize: 24 }} />}
-                                    </Box>
-                                    <TextField type={isPasswordHidden ? 'password' : 'text'} onChange={e => setPassword(e.target.value)} color='primary' label='Password' variant='standard' fullWidth />
-                                </Box>
-                                <Button sx={{ alignSelf: 'center' }} size='large' disableElevation variant="contained" color='primary' type="submit">Register</Button>
+                                <TextInput inputType="name" color='primary' setInputValue={setName} isInputFocused={isNameInputFocused} setIsInputFocused={setIsNameInputFocused} />
+                                <TextInput inputType="email" color='primary' setInputValue={setEmail} isInputFocused={isEmailInputFocused} setIsInputFocused={setIsEmailInputFocused} />
+                                <PasswordInput isPasswordHidden={isPasswordHidden} setIsPasswordHidden={setIsPasswordHidden} color='primary' setPassword={setPassword} />
+                                <SubmitButton color='primary' text='Register' />
                             </Box>
                         </FormControl>
                     </Box>
