@@ -13,7 +13,9 @@ export function SignIn() {
 
     const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true)
 
-    function handleRegister(event: FormEvent) {
+    const [inputMatches, setInputMatches] = useState<boolean | undefined>(undefined)
+
+    function handleSignIn(event: FormEvent) {
         event.preventDefault()
         console.log(name, password);
     }
@@ -35,7 +37,7 @@ export function SignIn() {
                     <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={8}>
                         <Typography fontWeight={500} align="center" variant="h3">Welcome back!</Typography>
                         <FormControl>
-                            <Box component='form' onSubmit={handleRegister} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
+                            <Box component='form' onSubmit={handleSignIn} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
                                 <TextField onChange={e => setName(e.target.value)} color='secondary' label='Name' variant='standard' sx={{ ml: 5 }} />
                                 <Box display='flex' justifyContent='space-between' alignItems='end' gap={2}>
                                     <Box display='flex' alignItems='end' onClick={() => setIsPasswordHidden(!isPasswordHidden)} sx={onHoverIconSX}>
@@ -45,6 +47,7 @@ export function SignIn() {
                                 </Box>
                                 <Button sx={{ alignSelf: 'center' }} size='large' disableElevation variant="contained" color='secondary' type="submit">Sign in</Button>
                             </Box>
+                            {(!inputMatches && inputMatches !== undefined) && (<Typography color='error' textAlign='center' marginTop={6}>Could not find user with the credentials given. Please try again.</Typography>)}
                         </FormControl>
                     </Box>
                 </Grid>
