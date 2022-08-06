@@ -1,6 +1,6 @@
 import { EmailOutlined, PersonOutlineOutlined } from "@mui/icons-material"
 import { Box, TextField } from "@mui/material"
-import { ColorProps } from "../types/colorProps"
+import { ColorProps } from "../types/ColorProps"
 
 interface InputProps {
     inputType: 'email' | 'name'
@@ -25,14 +25,14 @@ export function TextInput({
                     <Box display='flex' alignItems='end' onClick={() => setIsInputFocused(!isInputFocused)}>
                         <EmailOutlined aria-label="Email" sx={{ fontSize: 24 }} />
                     </Box>
-                    <TextField type='email' onClick={() => setIsInputFocused(true)} focused={isInputFocused} fullWidth onChange={e => setInputValue(e.target.value)} color={color} label='Email' variant='standard' />
+                    <TextField required type='email' onClick={() => setIsInputFocused(true)} focused={isInputFocused} fullWidth onChange={e => setInputValue(e.target.value)} color={color} label='Email' variant='standard' />
                 </>
             ) : (
                 <>
                     <Box display='flex' alignItems='end' onClick={() => setIsInputFocused(!isInputFocused)}>
                         <PersonOutlineOutlined aria-label="Name" sx={{ fontSize: 24 }} />
                     </Box>
-                    <TextField type='text' onClick={() => setIsInputFocused(true)} focused={isInputFocused} fullWidth onChange={e => setInputValue(e.target.value)} color={color} label='Name' variant='standard' />
+                    <TextField required type='text' onClick={() => setIsInputFocused(true)} focused={isInputFocused} fullWidth onChange={e => setInputValue(e.target.value)} color={color} label='Name' variant='standard' />
                 </>
             )}
         </Box>

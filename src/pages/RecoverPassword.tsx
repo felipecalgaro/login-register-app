@@ -1,4 +1,4 @@
-import { Box, Button, Card, FormControl, Grid, TextField, Typography } from "@mui/material";
+import { Box, Card, FormControl, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
@@ -13,9 +13,9 @@ export function RecoverPassword() {
     }
 
     return (
-        <Card sx={{ borderRadius: '10px', maxHeight: '800px' }}>
+        <Card sx={{ borderRadius: '10px', maxHeight: '800px', mx: { xs: 0, lg: '8rem' } }}>
             <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={10}>
-                <Typography fontWeight={500} align="center" variant="h3">Forgot your password?</Typography>
+                <Typography fontWeight={500} align="center" sx={{ fontSize: 40 }}>Forgot your password?</Typography>
                 <FormControl>
                     <Box component='form' onSubmit={handleEmailSubmit} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
                         <TextInput inputType='email' color='secondary' setInputValue={setEmail} isInputFocused={isEmailInputFocused} setIsInputFocused={setIsEmailInputFocused} />

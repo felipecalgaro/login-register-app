@@ -22,6 +22,7 @@ export function Register() {
 
     function handleRegister(event: FormEvent) {
         event.preventDefault()
+        if (confirmPassword !== password && confirmPassword && password) return
         console.log(name, email, password);
     }
 

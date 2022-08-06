@@ -1,6 +1,6 @@
 import { RemoveRedEyeOutlined, VisibilityOffOutlined } from "@mui/icons-material"
 import { Box, TextField } from "@mui/material"
-import { ColorProps } from "../types/colorProps"
+import { ColorProps } from "../types/ColorProps"
 
 interface PasswordInputProps {
     color: ColorProps
@@ -15,7 +15,7 @@ export function PasswordInput({
     setPassword,
     isPasswordHidden,
     setIsPasswordHidden,
-    label
+    label,
 }: PasswordInputProps) {
 
     const onHoverIconSX = {
@@ -26,10 +26,10 @@ export function PasswordInput({
 
     return (
         <Box display='flex' justifyContent='space-between' alignItems='end' gap={2}>
-            <Box display='flex' alignItems='end' onClick={() => setIsPasswordHidden(!isPasswordHidden)} sx={onHoverIconSX}>
+            <Box display='flex' alignItems='end' marginTop={1} onClick={() => setIsPasswordHidden(!isPasswordHidden)} sx={onHoverIconSX}>
                 {isPasswordHidden ? <VisibilityOffOutlined aria-label={label} sx={{ fontSize: 24 }} /> : <RemoveRedEyeOutlined aria-label={label} sx={{ fontSize: 24 }} />}
             </Box>
-            <TextField type={isPasswordHidden ? 'password' : 'text'} onChange={e => setPassword(e.target.value)} color={color} label={label} variant='standard' fullWidth />
+            <TextField required type={isPasswordHidden ? 'password' : 'text'} onChange={e => setPassword(e.target.value)} color={color} label={label} variant='standard' fullWidth />
         </Box>
     )
 }
