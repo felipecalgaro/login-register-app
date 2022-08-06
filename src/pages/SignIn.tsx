@@ -36,10 +36,10 @@ export function SignIn() {
                         <FormControl>
                             <Box component='form' onSubmit={handleSignIn} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
                                 <TextInput inputType="name" color="secondary" isInputFocused={isNameInputFocused} setInputValue={setName} setIsInputFocused={setIsNameInputFocused} />
-                                <PasswordInput isPasswordHidden={isPasswordHidden} color='secondary' setIsPasswordHidden={setIsPasswordHidden} setPassword={setPassword} />
+                                <PasswordInput isPasswordHidden={isPasswordHidden} color='secondary' label="Password" setIsPasswordHidden={setIsPasswordHidden} setPassword={setPassword} />
+                                <Typography color='error' sx={{ visibility: (!inputMatches && inputMatches !== undefined) ? 'visible' : 'hidden' }} textAlign='center'>Could not find user with the credentials given. Please try again.</Typography>
                                 <SubmitButton text='Sign in' color="secondary" />
                             </Box>
-                            {(!inputMatches && inputMatches !== undefined) && (<Typography color='error' textAlign='center' marginTop={6}>Could not find user with the credentials given. Please try again.</Typography>)}
                         </FormControl>
                     </Box>
                 </Grid>
