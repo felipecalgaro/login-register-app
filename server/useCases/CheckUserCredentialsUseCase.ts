@@ -11,7 +11,7 @@ export class CheckUserCredentialsUseCase extends User {
         const prisma = new PrismaClient()
         const user = await prisma.user.findFirst({
             where: {
-                AND: [{ email: this.email }, { name: this.name }]
+                name: this.name
             }
         })
         console.log(user);
