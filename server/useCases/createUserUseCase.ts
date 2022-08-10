@@ -1,19 +1,27 @@
 import { PrismaClient } from "@prisma/client";
-import { CreateUserProps } from '../../src/types/CreateUserProps'
+import { UserProps } from '../../src/types/UserProps'
+import { User } from "../entities/User";
 
-export function createUser({ name, password, email }: CreateUserProps) {
-    const prisma = new PrismaClient()
+export class CreateUserUseCase extends User {
+    constructor({ name, email, password }: UserProps) {
+        super(name, email, password)
+    }
 
-    async function main() {
+    async create() {
+        const prisma = new PrismaClient()
+
         const user = await prisma.user.create({
             data: {
-                name: name,
-                password: password,
-                email: email
+                name: this.name,
+                email: this.email,
+                password: this.password
             }
         })
         console.log(user);
+        return user
     }
-    main()
 }
-createUser({ name: 'name_test', password: 'pw_test', email: 'email_test' })
+
+const userCreated = new CreateUserUseCase({ name: 'nogfdgfdgfdmeffgfdfdsdsde', email: 'emafdsifdslfgdfgfdgfdgfddssfs', password: 'senhgfdfdssfdgfgfddgdsafdsa' }).create()
+
+
