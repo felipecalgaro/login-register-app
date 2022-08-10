@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "runServer": "ts-node-dev server/useCases/createUserUseCase.ts"
+    "runServer": "ts-node-dev server/useCases/CheckUserCredentialsUseCase.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",

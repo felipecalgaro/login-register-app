@@ -1,24 +1,20 @@
 import { PrismaClient } from "@prisma/client";
-import { UserProps } from '../../src/types/UserProps'
+import { UserProps } from "../../src/types/UserProps";
 import { User } from "../entities/User";
 
-export class CreateUserUseCase extends User {
+export class CheckUserCredentialsUseCase extends User {
     constructor({ name, email, password }: UserProps) {
         super(name, email, password)
     }
 
-    async create() {
+    async check() {
         const prisma = new PrismaClient()
-
-        const user = await prisma.user.create({
-            data: {
-                name: this.name,
-                email: this.email,
-                password: this.password
+        const user = await prisma.user.findFirst({
+            where: {
+                AND: [{ email: this.email }, { name: this.name }]
             }
         })
         console.log(user);
         return user
     }
 }
-
