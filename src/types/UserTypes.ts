@@ -3,3 +3,5 @@ export interface UserProps {
     password: string
     email: string
 }
+
+export type ReturnedUserFromDatabase = Promise<UserProps | null>

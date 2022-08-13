@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { UserProps } from "../../src/types/UserProps";
+import { ReturnedUserFromDatabase, UserProps } from "../../src/types/UserTypes";
 import { User } from "../entities/User";
 
 export class UpdateUserPasswordUseCase extends User {
@@ -7,18 +7,23 @@ export class UpdateUserPasswordUseCase extends User {
         super(name, email, password)
     }
 
-    async update(newPassword: string): Promise<UserProps | null> {
-        const prisma = new PrismaClient()
+    async update(newPassword: string): ReturnedUserFromDatabase {
+        try {
+            const prisma = new PrismaClient()
 
-        const user = await prisma.user.update({
-            where: {
-                email: this.email
-            },
-            data: {
-                password: newPassword
-            }
-        })
-        console.log(user);
-        return user
+            const user = await prisma.user.update({
+                where: {
+                    email: this.email
+                },
+                data: {
+                    password: newPassword
+                }
+            })
+            console.log(user);
+            return user
+        } catch (err) {
+            console.log(err);
+            return null
+        }
     }
 }

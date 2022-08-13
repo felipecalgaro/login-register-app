@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { UserProps } from "../../src/types/UserProps";
+import { ReturnedUserFromDatabase } from "../../src/types/UserTypes";
+import { UserProps } from "../../src/types/UserTypes";
 import { User } from "../entities/User";
 
 export class CheckUserCredentialsUseCase extends User {
@@ -7,14 +8,19 @@ export class CheckUserCredentialsUseCase extends User {
         super(name, email, password)
     }
 
-    async check(): Promise<UserProps | null> {
-        const prisma = new PrismaClient()
-        const user = await prisma.user.findFirst({
-            where: {
-                name: this.name
-            }
-        })
-        console.log(user);
-        return user
+    async check(): ReturnedUserFromDatabase {
+        try {
+            const prisma = new PrismaClient()
+            const user = await prisma.user.findFirst({
+                where: {
+                    name: this.name
+                }
+            })
+            console.log(user);
+            return user
+        } catch (err) {
+            console.log(err);
+            return null
+        }
     }
 }
