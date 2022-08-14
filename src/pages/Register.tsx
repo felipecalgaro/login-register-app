@@ -6,7 +6,6 @@ import { TextInput } from "../components/TextInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 
-
 export function Register() {
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
@@ -23,7 +22,7 @@ export function Register() {
     function handleRegister(event: FormEvent) {
         event.preventDefault()
         if (confirmPassword !== password && confirmPassword && password) return
-        console.log(name, email, password);
+        console.log(email, name, password);
     }
 
     useEffect(() => {
@@ -31,7 +30,7 @@ export function Register() {
     }, [])
 
     return (
-        <Card sx={{ borderRadius: '10px', minHeight: '720px' }}>
+        <Card sx={{ borderRadius: '10px', minHeight: '720px', maxHeight: { xs: 'auto', lg: '92vh' } }}>
             <Grid container justifyContent='space-between'>
                 <Grid item xs={12} lg={8}>
                     <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={8}>
