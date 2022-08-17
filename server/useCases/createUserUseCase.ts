@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import { ReturnedUserFromDatabase, UserProps } from '../../src/types/UserTypes'
+import { ReturnedUserFromDatabase, CreateUserProps } from '../../src/types/User'
 import { User } from "../entities/User";
 
 export class CreateUserUseCase extends User {
-    constructor({ name, email, password }: UserProps) {
+    constructor({ name, email, password }: CreateUserProps) {
         super(name, email, password)
     }
 
@@ -13,9 +13,9 @@ export class CreateUserUseCase extends User {
 
             const user = await prisma.user.create({
                 data: {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password
+                    name: this.name as string,
+                    email: this.email as string,
+                    password: this.password as string
                 }
             })
             console.log(user);

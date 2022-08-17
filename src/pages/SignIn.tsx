@@ -20,7 +20,18 @@ export function SignIn() {
 
     function handleSignIn(event: FormEvent) {
         event.preventDefault()
-        console.log(name, password);
+        const userData = {
+            name,
+            password
+        }
+        fetch('http://localhost:3003/', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(userData),
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+        })
     }
 
     useEffect(() => {
