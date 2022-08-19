@@ -10,7 +10,6 @@ export class CheckUserCredentialsUseCase extends User {
 	}
 
 	async check(): Promise<ReturnedUserFromDatabase> {
-		await prisma.$connect()
 		try {
 			const user = await prisma.user.findFirst({
 				where: {

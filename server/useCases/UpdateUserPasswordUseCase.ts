@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { ReturnedUserFromDatabase, UserProps } from "../../src/types/UserTypes";
 import { User } from "../entities/User";
+import prisma from "../lib/prisma";
 
 export class UpdateUserPasswordUseCase extends User {
     constructor({ name, email, password }: UserProps) {
@@ -9,8 +10,6 @@ export class UpdateUserPasswordUseCase extends User {
 
     async update(newPassword: string): ReturnedUserFromDatabase {
         try {
-            const prisma = new PrismaClient()
-
             const user = await prisma.user.update({
                 where: {
                     email: this.email
