@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "server": "ts-node-dev server/api/index.ts",
+    "server": "ts-node-dev --files server/api/index.ts",
     "test": "vitest"
   },
   "dependencies": {

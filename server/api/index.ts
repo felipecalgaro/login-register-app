@@ -14,6 +14,6 @@ app.use((req, res, next) => {
 
 app.use('/', signInRouter)
 
-app.listen(3003, () => {
-	console.log('server up on port 3003')
+app.listen(process.env.PORT || 3003, () => {
+	console.log('server up')
 })

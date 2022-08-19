@@ -7,7 +7,7 @@ export class CreateUserUseCase extends User {
         super(name, email, password)
     }
 
-    async create(): ReturnedUserFromDatabase {
+    async create(): Promise<ReturnedUserFromDatabase> {
         try {
             const prisma = new PrismaClient()
 

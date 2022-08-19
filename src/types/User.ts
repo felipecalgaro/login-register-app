@@ -12,4 +12,4 @@ export interface CheckUserProps {
     email: string | undefined
 }
 
-export type ReturnedUserFromDatabase = Promise<null | Prisma.UserCreateInput>
+export type ReturnedUserFromDatabase = Prisma.UserCreateInput | void | null

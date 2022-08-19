@@ -5,6 +5,7 @@ import SideImage from '../assets/sign-in-side-image.png';
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
+import { ReturnedUserFromDatabase } from "../types/User";
 
 
 export function SignIn() {
@@ -18,7 +19,9 @@ export function SignIn() {
 
     const [inputMatches, setInputMatches] = useState<boolean | undefined>(undefined)
 
-    function handleSignIn(event: FormEvent) {
+    const [userData, setUserData] = useState<ReturnedUserFromDatabase | null>(null)
+
+    async function handleSignIn(event: FormEvent) {
         event.preventDefault()
         const userData = {
             name,
@@ -31,8 +34,16 @@ export function SignIn() {
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             }
+        }).then(() => {
+            fetch('http://localhost:3003/')
+                .then(res => res.json())
+                .then(data => setUserData(data))
         })
     }
+
+    useEffect(() => {
+        console.log(userData)
+    }, [userData])
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenWidth(screen.width))
