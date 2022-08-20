@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { ReturnedUserFromDatabase } from "../../src/types/User";
-import { CheckUserProps } from "../../src/types/User";
+import { ReturnedUserFromDatabase } from "../../src/types/user";
+import { CheckUserProps } from "../../src/types/user";
 import { User } from "../entities/User";
 import prisma from '../lib/prisma'
 

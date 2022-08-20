@@ -1,14 +1,17 @@
 import { Box, Button, Card, FormControl, Grid, TextField, Typography } from "@mui/material";
+import { User } from "@prisma/client";
 import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FooterImage from '../assets/sign-in-footer-image.png';
 import SideImage from '../assets/sign-in-side-image.png';
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
-import { ReturnedUserFromDatabase } from "../types/User";
+import { ReturnedUserFromDatabase, SignInProps } from "../types/user";
 
+export function SignIn({ setUser, user }: SignInProps) {
+    const navigate = useNavigate()
 
-export function SignIn() {
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -18,8 +21,6 @@ export function SignIn() {
     const [isNameInputFocused, setIsNameInputFocused] = useState<boolean>(false)
 
     const [inputMatches, setInputMatches] = useState<boolean | undefined>(undefined)
-
-    const [userData, setUserData] = useState<ReturnedUserFromDatabase | null>(null)
 
     async function handleSignIn(event: FormEvent) {
         event.preventDefault()
@@ -37,13 +38,15 @@ export function SignIn() {
         }).then(() => {
             fetch('http://localhost:3003/')
                 .then(res => res.json())
-                .then(data => setUserData(data))
+                .then(data => setUser(data))
+                .then(() => navigate(`/user/${user?.id}`))
         })
+
     }
 
     useEffect(() => {
-        console.log(userData)
-    }, [userData])
+        console.log(user)
+    }, [user])
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenWidth(screen.width))

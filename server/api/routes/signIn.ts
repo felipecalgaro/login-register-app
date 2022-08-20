@@ -1,11 +1,10 @@
-import { Prisma } from "@prisma/client";
 import express from "express";
-import { ReturnedUserFromDatabase } from "../../../src/types/User";
+import { ReturnedUserFromDatabase } from "../../../src/types/user";
 import { CheckUserCredentialsUseCase } from "../../useCases/CheckUserCredentialsUseCase";
 
 export const router = express.Router()
 
-let user: Prisma.UserCreateInput | void | null
+let user: ReturnedUserFromDatabase
 
 router.post('/', (req, res) => {
   try {
@@ -26,9 +25,3 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   res.status(201).send(JSON.stringify({ ...user, isNewUser: false }))
 })
-
-// redireciona pro id do usuario logado (nao registrado)
-// rota q pega esse id e faz um query no db
-// envia usuario retornado pro fornt end pra ele mostra
-
-// pq ta dando problema qnd da o handleregister?? (as vezes tem usuario as vezes nao)

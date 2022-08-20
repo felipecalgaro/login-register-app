@@ -1,6 +1,6 @@
 import { EmailOutlined, PersonOutlineOutlined } from "@mui/icons-material"
 import { Box, TextField } from "@mui/material"
-import { ColorProps } from "../types/ColorProps"
+import { ColorProps } from "../types/colorProps"
 
 interface InputProps {
     inputType: 'email' | 'name'
