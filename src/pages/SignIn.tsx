@@ -10,6 +10,7 @@ import { TextInput } from "../components/TextInput";
 import { ReturnedUserFromDatabase, SignInProps } from "../types/user";
 
 export function SignIn({ setUser, user }: SignInProps) {
+    const [errorWhileFetching, setErrorWhileFetching] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const [name, setName] = useState<string>('')
@@ -20,32 +21,30 @@ export function SignIn({ setUser, user }: SignInProps) {
     const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true)
     const [isNameInputFocused, setIsNameInputFocused] = useState<boolean>(false)
 
-    const [inputMatches, setInputMatches] = useState<boolean | undefined>(undefined)
-
     async function handleSignIn(event: FormEvent) {
         event.preventDefault()
         const userData = {
             name,
             password
         }
-        fetch('http://localhost:3003/', {
+        await fetch('http://localhost:3003/', {
             method: 'POST',
             mode: 'cors',
             body: JSON.stringify(userData),
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             }
-        }).then(() => {
-            fetch('http://localhost:3003/')
-                .then(res => res.json())
-                .then(data => setUser(data))
-                .then(() => navigate(`/user/${user?.id}`))
         })
 
+        const response = await fetch('http://localhost:3003/')
+        const data = await response.json()
+        data ? setUser(data) : setErrorWhileFetching(true)
     }
 
     useEffect(() => {
-        console.log(user)
+        if (user) {
+            navigate(`/user/${user?.id}`)
+        }
     }, [user])
 
     useEffect(() => {
@@ -62,7 +61,7 @@ export function SignIn({ setUser, user }: SignInProps) {
                             <Box component='form' onSubmit={handleSignIn} autoComplete="off" display='flex' alignItems='stretch' flexDirection='column' gap={8}>
                                 <TextInput inputType="name" color="secondary" isInputFocused={isNameInputFocused} setInputValue={setName} setIsInputFocused={setIsNameInputFocused} />
                                 <PasswordInput isPasswordHidden={isPasswordHidden} color='secondary' label="Password" setIsPasswordHidden={setIsPasswordHidden} setPassword={setPassword} />
-                                <Typography color='error' sx={{ visibility: (!inputMatches && inputMatches !== undefined) ? 'visible' : 'hidden' }} textAlign='center'>Could not find user with the credentials given. Please try again.</Typography>
+                                <Typography color='error' sx={{ visibility: errorWhileFetching ? 'visible' : 'hidden' }} textAlign='center'>Could not find user with the credentials given. Please try again.</Typography>
                                 <SubmitButton text='Sign in' color="secondary" />
                             </Box>
                         </FormControl>

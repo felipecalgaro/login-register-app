@@ -23,5 +23,9 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  res.status(201).send(JSON.stringify({ ...user, isNewUser: false }))
+  if (user) {
+    res.status(201).send(JSON.stringify({ ...user, isNewUser: false }))
+  } else {
+    res.status(404).send(JSON.stringify(null))
+  }
 })

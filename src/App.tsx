@@ -28,6 +28,4 @@ function App() {
 
 }
 
-// passar user de sibling pro outro
-
 export default App
