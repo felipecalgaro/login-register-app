@@ -9,7 +9,7 @@ import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 import { ReturnedUserFromDatabase, SignInProps } from "../types/user";
 
-export function SignIn({ setUser, user }: SignInProps) {
+export function SignIn({ setUser }: SignInProps) {
     const [errorWhileFetching, setErrorWhileFetching] = useState<boolean>(false)
     const navigate = useNavigate()
 
@@ -23,10 +23,12 @@ export function SignIn({ setUser, user }: SignInProps) {
 
     async function handleSignIn(event: FormEvent) {
         event.preventDefault()
+
         const userData = {
             name,
             password
         }
+
         await fetch('http://localhost:3003/', {
             method: 'POST',
             mode: 'cors',
@@ -37,15 +39,13 @@ export function SignIn({ setUser, user }: SignInProps) {
         })
 
         const response = await fetch('http://localhost:3003/')
-        const data = await response.json()
-        data ? setUser(data) : setErrorWhileFetching(true)
-    }
+        const data: ReturnedUserFromDatabase = await response.json()
 
-    useEffect(() => {
-        if (user) {
-            navigate(`/user/${user?.id}`)
-        }
-    }, [user])
+        if (data) {
+            setUser(data)
+            navigate(`/user/${data.id}`)
+        } else setErrorWhileFetching(true)
+    }
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenWidth(screen.width))

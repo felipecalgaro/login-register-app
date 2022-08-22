@@ -15,7 +15,7 @@ function App() {
       <Grid marginTop={4} item xs={12} md={8}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignIn setUser={setUser} user={user} />} />
+            <Route path="/" element={<SignIn setUser={setUser} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/recover-password" element={<RecoverPassword />} />
             <Route path="/user/*" element={<User user={user} />} />

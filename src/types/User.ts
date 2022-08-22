@@ -14,7 +14,6 @@ export interface CheckUserProps {
 
 export interface SignInProps {
     setUser: (arg: ReturnedUserFromDatabase) => void
-    user: ReturnedUserFromDatabase
 }
 
 export type ReturnedUserFromDatabase = Prisma.UserCreateInput | void | null
