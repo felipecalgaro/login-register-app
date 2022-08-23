@@ -18,7 +18,7 @@ export function User({ user }: UserPageProps) {
     <Grid container height='90%' maxHeight='100vh' maxWidth='100vw' sx={{ backgroundImage: 'url("../../src/assets/user-page-background.png")', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Grid container justifyContent='center' alignItems='center' height='90%' maxHeight='100vh'>
         <Card raised sx={{
-          px: 8,
+          px: { sm: 8, xs: 4 },
           py: 6,
           fontFamily: 'Roboto',
           display: 'flex',

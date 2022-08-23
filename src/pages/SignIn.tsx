@@ -4,10 +4,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FooterImage from '../assets/sign-in-footer-image.png';
 import SideImage from '../assets/sign-in-side-image.png';
+import { ForgotPassword } from "../components/ForgotPassword";
+import { NewUser } from "../components/NewUser";
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 import { ReturnedUserFromDatabase, SignInProps } from "../types/user";
+import { RecoverPassword } from "./RecoverPassword";
 
 export function SignIn({ setUser }: SignInProps) {
     const [errorWhileFetching, setErrorWhileFetching] = useState<boolean>(false)
@@ -65,6 +68,10 @@ export function SignIn({ setUser }: SignInProps) {
                                 <SubmitButton text='Sign in' color="secondary" />
                             </Box>
                         </FormControl>
+                        <Box display='flex' justifyContent='center' flexWrap='wrap'>
+                            <NewUser />
+                            <ForgotPassword />
+                        </Box>
                     </Box>
                 </Grid>
                 <Box component={Grid} item xs={12} lg={4}>
