@@ -12,12 +12,4 @@ export interface CheckUserProps {
     email: string | undefined
 }
 
-export interface SignInProps {
-    setUser: (arg: ReturnedUserFromDatabase) => void
-}
-
 export type ReturnedUserFromDatabase = Prisma.UserCreateInput | void | null
-
-export interface UserPageProps {
-    user: ReturnedUserFromDatabase
-}

@@ -9,7 +9,8 @@ import { NewUser } from "../components/NewUser";
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
-import { ReturnedUserFromDatabase, SignInProps } from "../types/user";
+import { ReturnedUserFromDatabase } from "../types/user";
+import { SignInProps } from "../types/pages";
 import { RecoverPassword } from "./RecoverPassword";
 
 export function SignIn({ setUser }: SignInProps) {
@@ -69,8 +70,8 @@ export function SignIn({ setUser }: SignInProps) {
                             </Box>
                         </FormControl>
                         <Box display='flex' justifyContent='center' flexWrap='wrap'>
-                            <NewUser />
-                            <ForgotPassword />
+                            <NewUser color="primary" />
+                            <ForgotPassword color="secondary" />
                         </Box>
                     </Box>
                 </Grid>

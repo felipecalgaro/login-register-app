@@ -2,7 +2,7 @@ import { Card, Grid, Typography } from "@mui/material";
 import { Prisma } from "@prisma/client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserPageProps } from "../types/user";
+import { UserPageProps } from "../types/pages";
 
 export function User({ user }: UserPageProps) {
   const navigate = useNavigate()
