@@ -1,5 +1,4 @@
-import { Box, Button, Card, FormControl, Grid, TextField, Typography } from "@mui/material";
-import { User } from "@prisma/client";
+import { Box, Card, FormControl, Grid, Typography } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FooterImage from '../assets/sign-in-footer-image.png';
@@ -11,7 +10,7 @@ import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 import { ReturnedUserFromDatabase } from "../types/user";
 import { SignInProps } from "../types/pages";
-import { RecoverPassword } from "./RecoverPassword";
+import { ReturnedUserFromAPI } from "../types/user";
 
 export function SignIn({ setUser }: SignInProps) {
     const [errorWhileFetching, setErrorWhileFetching] = useState<boolean>(false)
@@ -28,22 +27,17 @@ export function SignIn({ setUser }: SignInProps) {
     async function handleSignIn(event: FormEvent) {
         event.preventDefault()
 
-        const userData = {
-            name,
-            password
-        }
-
         await fetch('http://localhost:3003/', {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(userData),
+            body: JSON.stringify({ name, password }),
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             }
         })
 
         const response = await fetch('http://localhost:3003/')
-        const data: ReturnedUserFromDatabase = await response.json()
+        const data: ReturnedUserFromAPI = await response.json()
 
         if (data) {
             setUser(data)
@@ -70,7 +64,7 @@ export function SignIn({ setUser }: SignInProps) {
                             </Box>
                         </FormControl>
                         <Box display='flex' justifyContent='center' flexWrap='wrap'>
-                            <NewUser color="primary" />
+                            <NewUser color="secondary" />
                             <ForgotPassword color="secondary" />
                         </Box>
                     </Box>

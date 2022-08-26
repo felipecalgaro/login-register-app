@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { ReturnedUserFromDatabase, CreateUserProps } from '../../src/types/User'
+import { ReturnedUserFromDatabase, CreateUserProps } from '../../src/types/user'
 import { User } from "../entities/User";
 import prisma from "../lib/prisma";
 
@@ -17,7 +16,6 @@ export class CreateUserUseCase extends User {
                     password: this.password as string
                 }
             })
-            console.log(user);
             return user
         } catch (err) {
             console.log(err)

@@ -1,6 +1,6 @@
 import express from "express";
 import { ReturnedUserFromDatabase } from "../../../src/types/user";
-import { CheckUserCredentialsUseCase } from "../../useCases/CheckUserCredentialsUseCase";
+import { CreateUserUseCase } from "../../useCases/CreateUserUseCase";
 
 export const router = express.Router()
 
@@ -10,11 +10,12 @@ router.post('/', (req, res) => {
   try {
     const name = req.body.name
     const password = req.body.password
+    const email = req.body.email
 
-    new CheckUserCredentialsUseCase({ name, email: undefined, password })
-      .check()
+    new CreateUserUseCase({ name, email, password })
+      .create()
       .then(returnedUser => {
-        res.sendStatus(200) // res.status(200).send('OK')
+        res.sendStatus(200)
         user = returnedUser
       })
   } catch (error) {
@@ -24,7 +25,7 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
   if (user) {
-    res.status(201).send(JSON.stringify({ ...user, isNew: false }))
+    res.status(201).send(JSON.stringify({ ...user, isNew: true }))
   } else {
     res.status(404).send(JSON.stringify(null))
   }

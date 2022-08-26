@@ -1,9 +1,13 @@
-import { ReturnedUserFromDatabase } from "./user"
+import { ReturnedUserFromAPI } from "./user"
 
 export interface SignInProps {
-  setUser: (arg: ReturnedUserFromDatabase) => void
+  setUser: (arg: ReturnedUserFromAPI) => void
+}
+
+export interface RegisterProps {
+  setUser: (arg: ReturnedUserFromAPI) => void
 }
 
 export interface UserPageProps {
-  user: ReturnedUserFromDatabase
+  user: ReturnedUserFromAPI | null
 }

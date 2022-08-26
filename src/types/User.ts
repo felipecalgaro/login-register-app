@@ -13,3 +13,7 @@ export interface CheckUserProps {
 }
 
 export type ReturnedUserFromDatabase = Prisma.UserCreateInput | void | null
+
+export type ReturnedUserFromAPI = ReturnedUserFromDatabase & {
+    isNew: boolean
+}

@@ -1,5 +1,6 @@
 import express from 'express'
 import { router as signInRouter } from './routes/signIn'
+import { router as registerRouter } from './routes/register'
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', signInRouter)
+app.use('/register', registerRouter)
 
 app.listen(process.env.PORT || 3003, () => {
 	console.log('server up')

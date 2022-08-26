@@ -3,12 +3,12 @@ import { Register } from "./pages/Register"
 import { SignIn } from "./pages/SignIn"
 import { RecoverPassword } from "./pages/RecoverPassword"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { createContext, useContext, useState } from "react"
-import { ReturnedUserFromDatabase } from "./types/user"
+import { useState } from "react"
 import { User } from "./pages/User"
+import { ReturnedUserFromAPI } from "./types/user";
 
 function App() {
-  const [user, setUser] = useState<ReturnedUserFromDatabase | null>(null)
+  const [user, setUser] = useState<ReturnedUserFromAPI | null>(null)
 
   return (
     <Grid height='100vh' container justifyContent='center'>
@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<SignIn setUser={setUser} />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<Register setUser={setUser} />} />
             <Route path="/recover-password" element={<RecoverPassword />} />
             <Route path="/user/*" element={<User user={user} />} />
             <Route path="*" element='404 not found' />

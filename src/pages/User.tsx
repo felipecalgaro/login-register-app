@@ -1,5 +1,4 @@
 import { Card, Grid, Typography } from "@mui/material";
-import { Prisma } from "@prisma/client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserPageProps } from "../types/pages";
@@ -16,7 +15,8 @@ export function User({ user }: UserPageProps) {
 
   return (
     <Grid container height='90%' maxHeight='100vh' maxWidth='100vw' sx={{ backgroundImage: 'url("../../src/assets/user-page-background.png")', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
-      <Grid container justifyContent='center' alignItems='center' height='90%' maxHeight='100vh'>
+      <Grid container justifyContent='space-evenly' alignItems='center' height='90%' maxHeight='100vh' flexDirection='column'>
+        <Typography textAlign='center' fontFamily='Roboto' sx={{ fontSize: { xs: 50, sm: 100 }, textShadow: '1px 0px 10px #282828', px: 3 }}>{user?.isNew ? 'Welcome!' : 'Welcome back!'}</Typography>
         <Card raised sx={{
           px: { sm: 8, xs: 4 },
           py: 6,
@@ -35,7 +35,7 @@ export function User({ user }: UserPageProps) {
           <Typography fontSize={20} variant="h2">Name: {user?.name}</Typography>
           <Typography fontSize={20} variant="h2">Email: {user?.email}</Typography>
           <Typography fontSize={20} variant="h2">Password: {user?.password}</Typography>
-          <Typography fontSize={20} variant="h2">Created at: {user?.createdAt?.toString()}</Typography>
+          <Typography fontSize={20} variant="h2">Created at: {user?.createdAt?.toLocaleString()}</Typography>
         </Card>
       </Grid>
     </Grid>
