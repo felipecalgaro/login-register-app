@@ -8,6 +8,9 @@ import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { RegisterProps } from "../types/pages";
 import { ReturnedUserFromAPI } from "../types/user";
+import { NewUser } from "../components/NewUser";
+import { ForgotPassword } from "../components/ForgotPassword";
+import { AlreadyRegistered } from "../components/AlreadyRegistered";
 
 export function Register({ setUser }: RegisterProps) {
     const [name, setName] = useState<string>('')
@@ -52,7 +55,7 @@ export function Register({ setUser }: RegisterProps) {
     }, [])
 
     return (
-        <Card sx={{ borderRadius: '10px', minHeight: '720px', maxHeight: { xs: 'auto', lg: '92vh' } }}>
+        <Card sx={{ borderRadius: '10px', minHeight: '720px' }}>
             <Grid container justifyContent='space-between'>
                 <Grid item xs={12} lg={8}>
                     <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={8}>
@@ -68,6 +71,10 @@ export function Register({ setUser }: RegisterProps) {
                                 <SubmitButton color='primary' text='Register' />
                             </Box>
                         </FormControl>
+                        <Box display='flex' justifyContent='center' flexWrap='wrap' columnGap={3}>
+                            <AlreadyRegistered color="primary" />
+                            <ForgotPassword color="primary" />
+                        </Box>
                     </Box>
                 </Grid>
                 <Box component={Grid} item xs={12} lg={4}>

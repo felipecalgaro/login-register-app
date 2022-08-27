@@ -50,7 +50,7 @@ export function SignIn({ setUser }: SignInProps) {
     }, [])
 
     return (
-        <Card sx={{ borderRadius: '10px', maxHeight: '800px' }}>
+        <Card sx={{ borderRadius: '10px', minHeight: '750px' }}>
             <Grid container justifyContent='space-between'>
                 <Grid item xs={12} lg={8}>
                     <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={8}>
@@ -63,14 +63,14 @@ export function SignIn({ setUser }: SignInProps) {
                                 <SubmitButton text='Sign in' color="secondary" />
                             </Box>
                         </FormControl>
-                        <Box display='flex' justifyContent='center' flexWrap='wrap'>
+                        <Box display='flex' justifyContent='center' flexWrap='wrap' columnGap={3}>
                             <NewUser color="secondary" />
                             <ForgotPassword color="secondary" />
                         </Box>
                     </Box>
                 </Grid>
                 <Box component={Grid} item xs={12} lg={4}>
-                    <Box component='img' width='100%' minHeight='100%' src={screenWidth < 1200 ? FooterImage : SideImage} />
+                    <Box component='img' width='100%' height='auto' minHeight='100%' src={screenWidth < 1200 ? FooterImage : SideImage} />
                 </Box>
             </Grid>
         </Card>

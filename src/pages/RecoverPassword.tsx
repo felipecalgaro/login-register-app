@@ -1,5 +1,8 @@
 import { Box, Card, FormControl, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
+import { AlreadyRegistered } from "../components/AlreadyRegistered";
+import { ForgotPassword } from "../components/ForgotPassword";
+import { NewUser } from "../components/NewUser";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 
@@ -13,7 +16,7 @@ export function RecoverPassword() {
     }
 
     return (
-        <Card sx={{ borderRadius: '10px', maxHeight: '800px', mx: { xs: 0, lg: '8rem' } }}>
+        <Card sx={{ borderRadius: '10px', maxHeight: '900px', mx: { xs: 0, lg: '8rem' } }}>
             <Box fontFamily='Roboto' sx={{ padding: { xs: 4, sm: 8 } }} display='flex' justifyContent='start' alignContent='center' minHeight='100%' flexDirection='column' gap={10}>
                 <Typography fontWeight={500} align="center" sx={{ fontSize: 40 }}>Forgot your password?</Typography>
                 <FormControl>
@@ -23,6 +26,10 @@ export function RecoverPassword() {
                     </Box>
                 </FormControl>
                 <Typography textAlign='center' color='GrayText'>A message will be sent to your e-mail to set or reset your new password</Typography>
+                <Box display='flex' justifyContent='center' flexWrap='wrap' columnGap={3}>
+                    <AlreadyRegistered color="secondary" />
+                    <NewUser color="secondary" />
+                </Box>
             </Box>
         </Card>
     )
