@@ -3,14 +3,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FooterImage from '../assets/sign-in-footer-image.png';
 import SideImage from '../assets/sign-in-side-image.png';
-import { ForgotPassword } from "../components/ForgotPassword";
-import { NewUser } from "../components/NewUser";
 import { PasswordInput } from "../components/PasswordInput";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 import { ReturnedUserFromDatabase } from "../types/user";
 import { SignInProps } from "../types/pages";
 import { ReturnedUserFromAPI } from "../types/user";
+import { AnchorLink } from "../components/AnchorLink";
 
 export function SignIn({ setUser }: SignInProps) {
     const [errorWhileFetching, setErrorWhileFetching] = useState<boolean>(false)
@@ -64,8 +63,8 @@ export function SignIn({ setUser }: SignInProps) {
                             </Box>
                         </FormControl>
                         <Box display='flex' justifyContent='center' flexWrap='wrap' columnGap={3}>
-                            <NewUser color="secondary" />
-                            <ForgotPassword color="secondary" />
+                            <AnchorLink textColor="secondary" text={['New user?', 'Register now']} paddingStyle='.5rem 1rem 1rem 1rem' navigateTo="/register" />
+                            <AnchorLink textColor="secondary" text={['Forgot your password?', 'Recover it']} paddingStyle='.5rem 1rem .5rem 1rem' navigateTo="/recover-password" />
                         </Box>
                     </Box>
                 </Grid>

@@ -1,8 +1,6 @@
 import { Box, Card, FormControl, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
-import { AlreadyRegistered } from "../components/AlreadyRegistered";
-import { ForgotPassword } from "../components/ForgotPassword";
-import { NewUser } from "../components/NewUser";
+import { AnchorLink } from "../components/AnchorLink";
 import { SubmitButton } from "../components/SubmitButton";
 import { TextInput } from "../components/TextInput";
 
@@ -27,8 +25,8 @@ export function RecoverPassword() {
                 </FormControl>
                 <Typography textAlign='center' color='GrayText'>A message will be sent to your e-mail to set or reset your new password</Typography>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' columnGap={3}>
-                    <AlreadyRegistered color="secondary" />
-                    <NewUser color="secondary" />
+                    <AnchorLink textColor="secondary" text={['Already registered?', 'Sign in']} paddingStyle='.5rem 1rem .5rem 1rem' navigateTo="/" />
+                    <AnchorLink textColor="secondary" text={['New user?', 'Register now']} paddingStyle='.5rem 1rem 1rem 1rem' navigateTo="/register" />
                 </Box>
             </Box>
         </Card>
